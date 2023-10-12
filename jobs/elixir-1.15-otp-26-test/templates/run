@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -eux
+
+echo "Testing runtime"
+source /var/vcap/packages/otp-26/bosh/runtime.env
+source /var/vcap/packages/elixir-1.15-otp-26/bosh/runtime.env
+
+export HOME=/root
+elixir /var/vcap/packages/elixir-1.15-otp-26-test/bin/hello.exs
+mix -v

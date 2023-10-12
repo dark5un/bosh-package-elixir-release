@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -eux
+
+source /var/vcap/packages/otp-26/bosh/runtime.env
+source /var/vcap/packages/elixir-1.15-otp-26/bosh/runtime.env
+
+mkdir -p ${BOSH_INSTALL_TARGET}/bin
+cp hello.exs ${BOSH_INSTALL_TARGET}/bin

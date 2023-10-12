@@ -1,0 +1,9 @@
+---
+name: elixir-1.15-otp-26-test
+
+dependencies:
+- otp-26
+- elixir-1.15-otp-26
+
+files:
+- hello.exs

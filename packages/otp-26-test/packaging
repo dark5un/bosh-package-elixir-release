@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -eux
+
+source /var/vcap/packages/otp-26/bosh/runtime.env
+
+mkdir -p ${BOSH_INSTALL_TARGET}/bin
+cp hello.erl ${BOSH_INSTALL_TARGET}/bin
+cd ${BOSH_INSTALL_TARGET}/bin
+erl -compile hello

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e -x -u
+
+source /var/vcap/packages/otp-26/bosh/runtime.env
+
+tar xzf v1.15*.tar.gz
+rm v1.15*.tar.gz
+
+pushd elixir-1.15.*
+    export PREFIX=${BOSH_INSTALL_TARGET}
+    export HOME=${BOSH_INSTALL_TARGET}
+    make clean install
+popd
+
+mkdir ${BOSH_INSTALL_TARGET}/bosh
+
+export PACKAGE_NAME="$(basename ${BOSH_INSTALL_TARGET})"
+sed "s#\${PACKAGE_NAME}#${PACKAGE_NAME}#" runtime.env.unix > "${BOSH_INSTALL_TARGET}/bosh/runtime.env"

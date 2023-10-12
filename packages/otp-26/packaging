@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e -x -u
+
+tar xzf otp_src_26*.tar.gz
+rm otp_src_26*.tar.gz
+
+pushd otp_src_*
+    ./configure --prefix=${BOSH_INSTALL_TARGET}
+    make
+    make install
+popd
+
+mkdir ${BOSH_INSTALL_TARGET}/bosh
+
+export PACKAGE_NAME="$(basename ${BOSH_INSTALL_TARGET})"
+sed "s#\${PACKAGE_NAME}#${PACKAGE_NAME}#" runtime.env.unix > "${BOSH_INSTALL_TARGET}/bosh/runtime.env"

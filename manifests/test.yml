@@ -1,0 +1,35 @@
+---
+name: test
+
+releases:
+- name: elixir
+  version: create
+  url: file://.
+
+stemcells:
+- alias: default
+  os: ((stemcell))
+  version: latest
+
+update:
+  canaries: 2
+  max_in_flight: 1
+  canary_watch_time: 5000-60000
+  update_watch_time: 5000-60000
+
+instance_groups:
+- name: elixir-test-server
+  azs: [z1]
+  # lifecycle: errand
+  instances: 1
+  jobs:
+  - name: otp-26-test
+    release: elixir
+    properties: {}
+  - name: elixir-1.15-otp-26-test
+    release: elixir
+    properties: {}
+  vm_type: default
+  stemcell: default
+  networks:
+  - name: default

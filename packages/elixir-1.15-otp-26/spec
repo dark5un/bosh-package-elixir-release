@@ -1,0 +1,9 @@
+---
+name: elixir-1.15-otp-26
+
+dependencies:
+- otp-26
+
+files:
+- runtime.env.unix
+- v1.15*.tar.gz

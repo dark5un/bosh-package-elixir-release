@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -eux
+
+echo "Testing runtime"
+source /var/vcap/packages/otp-26/bosh/runtime.env
+
+cp /var/vcap/packages/otp-26-test/bin/hello.* .
+erl -noshell -s hello hello_world -s init stop

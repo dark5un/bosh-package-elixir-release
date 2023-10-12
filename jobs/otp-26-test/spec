@@ -1,0 +1,11 @@
+---
+name: otp-26-test
+
+templates:
+  run: bin/run
+
+packages:
+- otp-26
+- otp-26-test
+
+properties: {}
